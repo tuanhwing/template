@@ -1,3 +1,23 @@
 {
-  "app_title": "Template Project"
+  "app_title": "Template Project",
+
+  "notify" : "notify",
+  "error_system" : "can not connect to server",
+  "ok" : "ok",
+  "login" : "login",
+  "email" : "email",
+  "email_placeholder" : "enter email",
+  "password" : "password",
+  "password_placeholder" : "enter passsword",
+  "forget_password" : "forget password",
+  "do_not_have_an_account" : "Don't have an account",
+  "sign_up" : "sign up",
+  "name" : "name",
+  "name_placeholder" : "enter name",
+  "contact_no" : "contact number",
+  "contact_no_placeholder" : "enter contact number",
+  "confirm_password" : "confirm password",
+  "confirm_password_placeholder" : "reenter password",
+  "invalid" : "invalid",
+  "feature_not_available" : "feature isn't available"
 }

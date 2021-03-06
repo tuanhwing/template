@@ -15,12 +15,13 @@ class TPNavigator {
   /// instances of [Navigator].
   static Future pushNamed<T>(BuildContext context, String routeName, {T arguments, bool useRootNavigator: false}) {
     var navigatorState = Navigator.of(context, rootNavigator: useRootNavigator);
+    TPLogger.log('$_string pushNamed  $routeName');
     return navigatorState.pushNamed(routeName, arguments: arguments);
   }
 
   static Future pushRoute(BuildContext context, PageRoute route, {bool useRootNavigator: false}) {
     var navigatorState = Navigator.of(context, rootNavigator: useRootNavigator);
-    TPLogger.log('$_string push new route ${route.toString()}');
+    TPLogger.log('$_string pushRoute ${route.toString()}');
     return navigatorState.push(route);
   }
 

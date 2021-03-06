@@ -1,10 +1,12 @@
 
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:template/utils/tp_defines.dart';
+import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
+import 'package:template/core/extensions/string_extension.dart';
 
 class TPPage extends StatelessWidget {
   TPPage(
@@ -67,21 +69,26 @@ class TPPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: TPDimensions.DIMENSION_8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(TPDimensions.DIMENSION_15),
-                  color: Colors.white,
+                  color: TPColors.white,
 
                 ),
                 child: Column(
                   children: [
-                    _buildTextTitle('Notify'),
+                    _buildTextTitle(tr('notify').capitalize),
                     SizedBox(height: TPDimensions.DIMENSION_12,),
                     Text(snapshot.error.toString()),
+                    SizedBox(height: TPDimensions.DIMENSION_8/2,),
                     Divider(
                         color: Colors.black54
                     ),
                     SizedBox(height: TPDimensions.DIMENSION_8/2,),
                     InkWell(
                       onTap: _onErrorTap,
-                      child: _buildTextTitle('OK'),
+                      child: Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        child: _buildTextTitle(tr('ok').allInCaps)
+                      ),
                     ),
                     SizedBox(height: TPDimensions.DIMENSION_8/2,),
                   ],

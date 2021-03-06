@@ -1,3 +1,23 @@
 {
-  "app_title": "Template Project"
+  "app_title": "Template Project",
+
+  "notify" : "thông báo",
+  "error_system" : "không thể kết nối tới hệ thống",
+  "ok" : "ok",
+  "login" : "đăng nhập",
+  "email" : "email",
+  "email_placeholder" : "nhập email",
+  "password" : "mật khẩu",
+  "password_placeholder" : "nhập mật khẩu",
+  "forget_password" : "quên mật khẩu",
+  "do_not_have_an_account" : "bạn chưa có tài khoản",
+  "sign_up" : "đăng ký",
+  "name" : "tên",
+  "name_placeholder" : "nhập tên",
+  "contact_no" : "số điện thoại",
+  "contact_no_placeholder" : "nhập số điện thoại",
+  "confirm_password" : "xác nhận mật khẩu",
+  "confirm_password_placeholder" : "Nhập lại mật khẩu",
+  "invalid" : "không hợp lệ",
+  "feature_not_available" : "tính năng chưa được hổ trợ"
 }

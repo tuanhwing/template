@@ -5,10 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/core/observers/tp_back_platform_observer.dart';
 import 'package:template/core/observers/tp_force_logout_observer.dart';
 import 'package:template/core/tp_network_requester.dart';
+import 'package:template/models/notifier/tp_user_notifier.dart';
+import 'package:template/models/tp_user_model.dart';
 import 'package:template/ui/screens/home_flow/home_wrapper.dart';
 import 'package:template/ui/screens/login_flow/login_wrapper.dart';
 import 'package:template/ui/screens/splash_screen.dart';
 import 'package:template/utils/tp_routenames.dart';
+import 'package:template/utils/tp_themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,11 +53,13 @@ class _MyAppState extends State<MyApp> {
         Provider<TPForceLogoutObserver>.value(value: _forceLogoutObserver),
         Provider<TPNetworkRequester>.value(value: _networkRequester),
         Provider<TPBackPlatformObserver>(create: (_) => TPBackPlatformObserver(),),
+        ChangeNotifierProvider<TPUserNotifier>(create: (_) => TPUserNotifier(TPUserModel()),)
       ],
       child: MaterialApp(
         localizationsDelegates: [
           EasyLocalization.of(context).delegate,
         ],
+        theme: TPThemes.defaultTheme,
         initialRoute: TPRouteNames.SPLASH,
         routes: {
           TPRouteNames.SPLASH : (_) => SplashScreen(),
