@@ -34,14 +34,14 @@ class TPThemes {
   );
 
   static final ColorScheme _colorScheme = ColorScheme(
-    primary: TPColors.black,
+    primary: TPColors.blue,
     primaryVariant: Color(0xFF6200EE),
     secondary: Color(0xFFFF5722),
     secondaryVariant: Color(0xFFFF5722),
     background: TPColors.white,
     surface: Color(0xFFF2F2F2),
-    onBackground: TPColors.black,
-    onSurface: TPColors.black,
+    onBackground: TPColors.blue,
+    onSurface: TPColors.blue,
     error: Colors.red,
     onError: TPColors.white,
     onPrimary: TPColors.white,

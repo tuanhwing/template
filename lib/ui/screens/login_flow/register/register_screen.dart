@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:template/blocs/pages/login/tp_register_bloc.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/login_flow/login_content_widget.dart';
-import 'package:template/ui/widgets/tp_button.dart';
-import 'package:template/ui/widgets/tp_textfield.dart';
+import 'package:template/ui/common/tp_button.dart';
+import 'package:template/ui/common/tp_textfield.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/utils/tp_dimensions.dart';
 

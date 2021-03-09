@@ -32,6 +32,7 @@ dependencies:
   http: ^0.12.2
   easy_localization: ^2.1.0+2
   shared_preferences: ^0.5.12
+  percent_indicator: 2.1.8
 
 dev_dependencies:
   flutter_test:

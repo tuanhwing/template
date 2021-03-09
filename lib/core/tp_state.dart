@@ -18,6 +18,7 @@ abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidg
   bool get isShowLoading => true;//show loading
   bool get isShowErrorNotification => true;//show error notification
   PreferredSizeWidget get appBar => null;
+  Color get backgroundColor => null;
 
   void onPostFrame() {}
   ///[END]OPTIONAL
@@ -44,6 +45,8 @@ abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidg
       content,
       _onErrorTap,
       bloc.loadingStream,
+      appBar: appBar,
+      backgroundColor: backgroundColor,
     );
   }
 

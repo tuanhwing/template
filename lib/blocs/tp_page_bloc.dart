@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:template/core/tp_bloc.dart';
 
-class TPPageBloc extends TPBloc {
+class TPPageBloc<T> extends TPBloc<T> {
   TPPageBloc({@required BuildContext context}) : super(context: context);
 
   StreamController<bool> loadingStreamController = StreamController<bool>.broadcast();

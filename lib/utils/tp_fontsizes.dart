@@ -11,6 +11,6 @@ class TPFontSizes {
   static const double SIZE_25 = 25.0;
 
 
-  static const double SIZE_30 = 30.0;
+  static const double SIZE_35 = 35.0;
   static const double SIZE_40 = 40.0;
 }

@@ -5,11 +5,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:template/blocs/tp_page_bloc.dart';
 import 'package:template/core/network/tp_response.dart';
-import 'package:template/core/tp_logger.dart';
 import 'package:template/core/tp_navigator.dart';
 import 'package:template/models/notifier/tp_user_notifier.dart';
 import 'package:template/models/tp_user_model.dart';
 import 'package:template/repositories/tp_user_repository.dart';
+import 'package:template/utils/tp_mockup.dart';
 import 'package:template/utils/tp_routenames.dart';
 import 'package:template/utils/tp_validation.dart';
 import 'package:template/core/extensions/string_extension.dart';
@@ -20,8 +20,8 @@ class TPLoginBloc extends TPPageBloc {
   final TPValidation _validater;
   final TPUserRepository _userRepository;
   final TPUserNotifier _userNotifier;
-  TextEditingController emailTEC = TextEditingController();
-  TextEditingController passwordTEC = TextEditingController();
+  TextEditingController emailTEC = TextEditingController(text: TPMockUp.USER_NAME);
+  TextEditingController passwordTEC = TextEditingController(text: TPMockUp.PASSWORD);
 
   StreamController _emailErrorSTC = StreamController.broadcast();
   StreamController _passwordErrorSTC = StreamController.broadcast();

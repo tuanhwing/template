@@ -24,18 +24,22 @@ class LoginContentWidget extends StatelessWidget {
           height: double.infinity,
           color: TPColors.cloud,
           child: ModalRoute.of(context).settings.name != TPRouteNames.LOGIN ? SafeArea(
-            child: GestureDetector(
-              onTap: () {
-                TPNavigator.pop(context);
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
-                child: Icon(
-                  Icons.arrow_back_ios_outlined,
-                  color: TPColors.black,
-                  size: 2*TPDimensions.DIMENSION_15,
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    TPNavigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
+                    child: Icon(
+                      Icons.arrow_back_ios_outlined,
+                      color: TPColors.black,
+                      size: 2*TPDimensions.DIMENSION_15,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ) : SizedBox(),
         ),
