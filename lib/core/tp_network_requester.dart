@@ -2,7 +2,7 @@
 import 'package:template/core/network/tp_endpoints.dart';
 import 'package:template/core/network/tp_request.dart';
 import 'package:template/core/network/tp_response.dart';
-import 'package:template/core/observers/tp_force_logout_observer.dart';
+import 'package:template/core/observers/tp_authentication_observer.dart';
 
 import 'package:template/core/config/tp_app_config.dart';
 import 'package:template/core/tp_logger.dart';
@@ -17,7 +17,7 @@ class TPNetworkRequester {
   String _refreshToken;
   String get token => _token;
 
-  TPForceLogoutObserver _logoutObserver;
+  TPAuthenticationObserver _logoutObserver;
 
 
   Future setToken(String token, String refreshToken) async {

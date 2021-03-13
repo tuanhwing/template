@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:template/blocs/pages/login/tp_register_bloc.dart';
 import 'package:template/core/tp_state.dart';
+import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/ui/screens/login_flow/login_content_widget.dart';
 import 'package:template/ui/common/tp_button.dart';
 import 'package:template/ui/common/tp_textfield.dart';
@@ -15,7 +16,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 
-class _RegisterState extends TPState<TPRegisterBloc, RegisterScreen> {
+class _RegisterState extends TPState<LoginBloc, RegisterScreen> {
+
+  @override
+  LoginBloc get bloc => null;
+
   @override
   // TODO: implement content
   Widget get content => LoginContentWidget(
@@ -26,44 +31,44 @@ class _RegisterState extends TPState<TPRegisterBloc, RegisterScreen> {
           TPTextField(
             title: tr('name').capitalizeFirstofEach,
             placeholder: tr('name_placeholder').capitalize,
-            controller: bloc.nameTEC,
-            stream: bloc.nameErrorStream,
+            // controller: bloc.nameTEC,
+            // stream: bloc.nameErrorStream,
           ),
           SizedBox(height: 2*TPDimensions.DIMENSION_8,),
           TPTextField(
             title: tr('email').capitalizeFirstofEach,
             placeholder: tr('email_placeholder').capitalize,
-            controller: bloc.emailTEC,
-            stream: bloc.emailErrorStream,
+            // controller: bloc.emailTEC,
+            // stream: bloc.emailErrorStream,
           ),
           SizedBox(height: 2*TPDimensions.DIMENSION_8,),
           TPTextField(
             title: tr('contact_no').capitalizeFirstofEach,
             placeholder: tr('contact_no_placeholder').capitalize,
-            controller: bloc.phoneTEC,
-            stream: bloc.phoneErrorStream,
+            // controller: bloc.phoneTEC,
+            // stream: bloc.phoneErrorStream,
           ),
           SizedBox(height: 2*TPDimensions.DIMENSION_8,),
           TPTextField(
             title: tr('password').capitalizeFirstofEach,
             placeholder: tr('password_placeholder').capitalize,
             obscureText: true,
-            controller: bloc.passwordTEC,
-            stream: bloc.passwordErrorStream,
+            // controller: bloc.passwordTEC,
+            // stream: bloc.passwordErrorStream,
           ),
           SizedBox(height: 2*TPDimensions.DIMENSION_8,),
           TPTextField(
             title: tr('confirm_password').capitalizeFirstofEach,
             placeholder: tr('confirm_password_placeholder').capitalize,
             obscureText: true,
-            controller: bloc.confirmPasswordTEC,
-            stream: bloc.passwordConfirmErrorStream,
+            // controller: bloc.confirmPasswordTEC,
+            // stream: bloc.passwordConfirmErrorStream,
           ),
           SizedBox(height: 2*TPDimensions.DIMENSION_12,),
 
           TPButton(
               title: tr("sign_up").capitalizeFirstofEach,
-              onTap: bloc.register
+              // onTap: bloc.register
           ),
         ],
       )

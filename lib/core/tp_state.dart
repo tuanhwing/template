@@ -1,18 +1,16 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:template/blocs/tp_page_bloc.dart';
-import 'package:template/core/factory/tp_bloc_factory.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:template/core/tp_page.dart';
 
-abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidget> extends State<StateWidget> {
-  Bloc bloc;//bloc for this state
+abstract class TPState<PageBloc extends Bloc, StateWidget extends StatefulWidget> extends State<StateWidget> {
+  PageBloc _bloc;//bloc for this state
 
 
   ///REQUIRE
   Widget get content;
+  PageBloc get bloc;
 
   ///[START]OPTIONAL
   bool get isShowLoading => true;//show loading
@@ -24,14 +22,14 @@ abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidg
   ///[END]OPTIONAL
 
   void _onErrorTap() {
-    bloc.loadingStreamController.sink.add(false);
+    // bloc.loadingStreamController.sink.add(false);
   }
 
   @override
   void initState() {
     super.initState();
 
-    bloc = TPBlocFactory.of<Bloc>(context);
+    _bloc = bloc;
 
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
       onPostFrame();
@@ -42,9 +40,12 @@ abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidg
   @override
   Widget build(BuildContext context) {
     return TPPage(
-      content,
+      BlocProvider(
+        create: (_) => _bloc,
+        child: content
+      ),
       _onErrorTap,
-      bloc.loadingStream,
+      // bloc.loadingStream,
       appBar: appBar,
       backgroundColor: backgroundColor,
     );
@@ -52,7 +53,7 @@ abstract class TPState<Bloc extends TPPageBloc, StateWidget extends StatefulWidg
 
   @override
   void dispose() {
-    bloc.dispose();
+    // bloc.dispose();
     super.dispose();
   }
 }

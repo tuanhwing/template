@@ -1,6 +1,4 @@
 
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:template/utils/tp_colors.dart';
@@ -12,15 +10,15 @@ class TPPage extends StatelessWidget {
   TPPage(
     this._body,
     this._onErrorTap,
-    this._stream,
+    // this._stream,
     {this.appBar,
     this.backgroundColor,
     this.enableLoading = true,
-    this.enableErrorNotification = true}) : assert(_body != null && _onErrorTap != null && _stream != null);
+    this.enableErrorNotification = true}) : assert(_body != null && _onErrorTap != null);
 
   final Widget _body;
   final VoidCallback _onErrorTap;
-  final Stream<bool> _stream;
+  // final Stream<bool> _stream;
 
   final backgroundColor;
   final PreferredSizeWidget appBar;
@@ -111,7 +109,7 @@ class TPPage extends StatelessWidget {
         children: [
           _body,
           StreamBuilder<bool>(
-            stream: _stream,
+            // stream: _stream,
             builder: (_, snapshot) {
               return _handle(snapshot);
             },

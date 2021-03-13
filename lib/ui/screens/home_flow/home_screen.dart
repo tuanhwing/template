@@ -6,6 +6,7 @@ import 'package:template/blocs/pages/tp_home_bloc.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/home_flow/main/home_main_screen.dart';
 import 'package:template/ui/screens/home_flow/settings/home_settings_screen.dart';
+import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,7 +14,11 @@ class HomeScreen extends StatefulWidget {
 
 }
 
-class _HomeState extends TPState<TPHomeBloc, HomeScreen> {
+class _HomeState extends TPState<LoginBloc, HomeScreen> {
+
+  @override
+  // TODO: implement bloc
+  LoginBloc get bloc => null;
 
   int _selectedIndex = 0;
   List<Widget> _widgets = <Widget>[
