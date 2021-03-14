@@ -21,6 +21,7 @@
   "confirm_password" : "confirm password",
   "confirm_password_placeholder" : "reenter password",
   "invalid" : "invalid",
+  "must_be_not_empty" : "must be not empty",
   "feature_not_available" : "feature isn't available",
 
   "vehicle_management": "vehicle management",
@@ -31,6 +32,7 @@
   "terms_privacy_policy" : "terms & privacy policy",
   "contact_us" : "contact us",
   "logout" : "logout",
-  "do_you_really_want_to_logout" : "do you really want to logout"
+  "do_you_really_want_to_logout" : "do you really want to logout",
+  "something_went_wrong" : "something went wrong"
 
 }

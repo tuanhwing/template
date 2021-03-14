@@ -22,7 +22,7 @@ class TPButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
         padding: EdgeInsets.symmetric(vertical: 2*TPDimensions.DIMENSION_8),
         decoration: BoxDecoration(
-          color: TPColors.black,
+          color: onTap == null ? TPColors.black.withOpacity(0.2) : TPColors.black,
           borderRadius: BorderRadius.all(Radius.circular(2*TPDimensions.DIMENSION_12))
         ),
         child: Text(

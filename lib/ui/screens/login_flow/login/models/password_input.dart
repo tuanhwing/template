@@ -1,5 +1,6 @@
 
 import 'package:formz/formz.dart';
+import 'package:template/core/extensions/string_extension.dart';
 
 enum PasswordInputError { empty }
 
@@ -12,6 +13,6 @@ class PasswordInput extends FormzInput<String, PasswordInputError> {
 
   @override
   PasswordInputError validator(String value) {
-    return value?.isNotEmpty == true ? null : PasswordInputError.empty;
+    return value?.isEmpty == true ? PasswordInputError.empty : null;
   }
 }

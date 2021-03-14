@@ -1,8 +1,8 @@
 
 
 import 'package:template/core/observers/tp_observer.dart';
+import 'package:template/repositories/tp_authentication_repository.dart';
 
-enum TPAuthenticationStatus { unkown, authenticated, unauthenticated }
 
 class TPAuthenticationObserver extends TPObserver<TPAuthenticationStatus> {
 

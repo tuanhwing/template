@@ -20,6 +20,7 @@
   "confirm_password": "xác nhận mật khẩu",
   "confirm_password_placeholder": "Nhập lại mật khẩu",
   "invalid": "không hợp lệ",
+  "must_be_not_empty" : "không được để trống",
   "feature_not_available": "tính năng chưa được hổ trợ",
   "vehicle_management": "quản lý xe",
   "document_management" : "quản lý tài liệu",
@@ -29,5 +30,6 @@
   "terms_privacy_policy" : "điều khoản & chính sách",
   "contact_us" : "liên hệ",
   "logout" : "đăng xuất",
-  "do_you_really_want_to_logout" : "bạn muốn đăng xuất khỏi ứng dụng"
+  "do_you_really_want_to_logout" : "bạn muốn đăng xuất khỏi ứng dụng",
+  "something_went_wrong" : "có gì đó không đúng"
 }

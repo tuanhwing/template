@@ -29,3 +29,11 @@ class LoginPasswordChanged extends LoginEvent {
 class LoginSubmitted extends LoginEvent {
   const LoginSubmitted();
 }
+
+class SignUpTaped extends LoginEvent {
+  const SignUpTaped();
+}
+
+class ForgetPasswordTaped extends LoginEvent {
+  const ForgetPasswordTaped();
+}

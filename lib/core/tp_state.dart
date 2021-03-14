@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/core/tp_page.dart';
+import 'package:template/core/factory/tp_bloc_factory.dart';
+import 'package:template/blocs/pages/tp_page_bloc.dart';
+import 'package:template/ui/common/page/cubit/page_cubit.dart';
+import 'package:template/ui/common/page/tp_page_widget.dart';
 
-abstract class TPState<PageBloc extends Bloc, StateWidget extends StatefulWidget> extends State<StateWidget> {
+abstract class TPState<PageBloc extends TPPageBloc, StateWidget extends StatefulWidget> extends State<StateWidget> {
   PageBloc _bloc;//bloc for this state
-
 
   ///REQUIRE
   Widget get content;
-  PageBloc get bloc;
 
   ///[START]OPTIONAL
   bool get isShowLoading => true;//show loading
@@ -22,14 +23,14 @@ abstract class TPState<PageBloc extends Bloc, StateWidget extends StatefulWidget
   ///[END]OPTIONAL
 
   void _onErrorTap() {
-    // bloc.loadingStreamController.sink.add(false);
+    _bloc.pageCubit.dismiss();
   }
 
   @override
   void initState() {
     super.initState();
 
-    _bloc = bloc;
+    _bloc = TPBlocFactory.of<PageBloc>(context);
 
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
       onPostFrame();
@@ -39,21 +40,23 @@ abstract class TPState<PageBloc extends Bloc, StateWidget extends StatefulWidget
 
   @override
   Widget build(BuildContext context) {
-    return TPPage(
-      BlocProvider(
-        create: (_) => _bloc,
-        child: content
+    return BlocProvider<PageCubit>(
+      create: (_) => _bloc.pageCubit,
+      child: TPPageWidget(
+        BlocProvider(
+          create: (_) => _bloc,
+          child: content
+        ),
+        _onErrorTap,
+        // bloc.loadingStream,
+        appBar: appBar,
+        backgroundColor: backgroundColor,
       ),
-      _onErrorTap,
-      // bloc.loadingStream,
-      appBar: appBar,
-      backgroundColor: backgroundColor,
     );
   }
 
   @override
   void dispose() {
-    // bloc.dispose();
     super.dispose();
   }
 }

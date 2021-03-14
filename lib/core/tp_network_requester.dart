@@ -2,22 +2,22 @@
 import 'package:template/core/network/tp_endpoints.dart';
 import 'package:template/core/network/tp_request.dart';
 import 'package:template/core/network/tp_response.dart';
-import 'package:template/core/observers/tp_authentication_observer.dart';
 
 import 'package:template/core/config/tp_app_config.dart';
 import 'package:template/core/tp_logger.dart';
+import 'package:template/repositories/tp_authentication_repository.dart';
 import 'package:template/utils/tp_defines.dart';
 import 'package:template/utils/tp_utils.dart';
 
 class TPNetworkRequester {
-  TPNetworkRequester(this._logoutObserver);
+  TPNetworkRequester(this._authenticationRepository);
   TPRequest _request = TPRequest(TPAPIConfig[TPAppConfig.APP_ENVIROMENT]);
 
   String _token;
   String _refreshToken;
   String get token => _token;
 
-  TPAuthenticationObserver _logoutObserver;
+  TPAuthenticationRepository _authenticationRepository;
 
 
   Future setToken(String token, String refreshToken) async {
@@ -37,16 +37,14 @@ class TPNetworkRequester {
   Future<TPResponse> _refreshNewToken() async {
     //RefresherTOKEN
 
-    Map<String, String> headerRequest = {"Authorization" : "Bearer " + _refreshToken};
-    TPLogger.log("refresh_token by refresh_token: $headerRequest");
-    TPResponse response = await _request.get(TPEndpoints.REFRESHER_TOKEN, headers: headerRequest);
+    TPResponse response = await _authenticationRepository.refreshToken(_refreshToken);;
     TPLogger.log('Response refresh_token code: ${response.code}');
     TPLogger.log('Response refresh_token data: ${response.data.toString()}');
     TPLogger.log('Response refresh_token message: ${response.message}');
     if (response.code == TPResponseCode.SUCCESS) {
       await setToken(response.data['token'], response.data['refresh_token']);
     }
-    else if (response.code == TPResponseCode.REFRESH_TOKEN_EXPIRED) {
+    else {
       removeToken();
     }
     return response;
@@ -95,12 +93,6 @@ class TPNetworkRequester {
           TPLogger.log("refresh token success");
           headerRequest["Authorization"] = "Bearer " + _token;
           tpResponse = await executeRequest(method, endpoint, headers: headerRequest, data: data);
-        }
-        else if (refreshResponse.code == TPResponseCode.REFRESH_TOKEN_EXPIRED) {
-          //notify logout observer
-          TPLogger.log("refresh token expire");
-          _logoutObserver.addEvent(true);
-          tpResponse = refreshResponse;
         }
       }
     }

@@ -8,21 +8,15 @@ import 'package:template/utils/tp_mockup.dart';
 class TPUserRepository extends TPRepository {
   TPUserRepository(BuildContext context) : super(context);
 
-  ///Log-in
-  Future<TPResponse> login(String username, String password) async {
-    // Map<String, dynamic> data = {
-    //   'username' : username,
-    //   'password' : password
-    // };
-    // return requester.executeRequest(TPRequestMethod.POST, TPEndpoints.LOGIN, data: data);
-
+  ///Get profile's user
+  ///param - email is temporary
+  Future<TPResponse> getUser({String email}) async {
 
     //MOCKUP SUCCESS
     await Future.delayed(Duration(seconds: 1));
     Map<String, dynamic> responseData = {
-      'username' : username,
+      'username' : email
     };
-    responseData.addAll(TPMockUp.LOGIN_SUCCESS_DATA);
     return TPResponse(code: TPResponseCode.SUCCESS, message: "", data: responseData);
   }
 
