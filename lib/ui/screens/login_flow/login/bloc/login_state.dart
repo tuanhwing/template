@@ -1,8 +1,8 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:template/ui/screens/login_flow/login/models/password_input.dart';
-import 'package:template/ui/screens/login_flow/login/models/email_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/password_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/email_input.dart';
 
 class LoginState extends Equatable {
   const LoginState({

@@ -1,6 +1,5 @@
 
 import 'package:formz/formz.dart';
-import 'package:template/core/extensions/string_extension.dart';
 
 enum PasswordInputError { empty }
 

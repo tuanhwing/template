@@ -31,5 +31,6 @@
   "contact_us" : "liên hệ",
   "logout" : "đăng xuất",
   "do_you_really_want_to_logout" : "bạn muốn đăng xuất khỏi ứng dụng",
-  "something_went_wrong" : "có gì đó không đúng"
+  "something_went_wrong" : "có gì đó không đúng",
+  "session_expired" : "phiên đăng nhập đã hết hạn"
 }

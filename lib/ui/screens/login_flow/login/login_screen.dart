@@ -3,12 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
+import 'package:template/core/tp_navigator.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_event.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_state.dart';
-import 'package:template/ui/screens/login_flow/login/models/email_input.dart';
-import 'package:template/ui/screens/login_flow/login/models/password_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/email_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/password_input.dart';
 import 'package:template/ui/screens/login_flow/login_content_widget.dart';
 import 'package:template/ui/common/tp_button.dart';
 import 'package:template/utils/tp_colors.dart';
@@ -25,6 +27,16 @@ class LoginScreen extends StatefulWidget {
 
 
 class _LoginState extends TPState<LoginBloc, LoginScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    ///Handle back Android device
+    context.read<TPBackPlatformCubit>().listen((_) {
+      TPNavigator.pop(context);
+    });
+  }
 
   @override
   Widget get content => LoginContentWidget(

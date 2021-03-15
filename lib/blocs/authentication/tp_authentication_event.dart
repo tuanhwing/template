@@ -24,3 +24,9 @@ class TPAuthenticationLogoutRequested extends TPAuthenticationEvent {
 
 }
 
+class TPAuthenticationTokenExpired extends TPAuthenticationEvent {
+}
+
+class TPAuthenticationCheckSession extends TPAuthenticationEvent {
+}
+

@@ -1,6 +1,6 @@
 
 import 'package:formz/formz.dart';
-import 'package:template/core/extensions/string_extension.dart';
+// import 'package:template/core/extensions/string_extension.dart';
 
 enum EmailInputError { empty, invalid }
 
@@ -13,6 +13,7 @@ class EmailInput extends FormzInput<String, EmailInputError> {
 
   @override
   EmailInputError validator(String value) {
-    return value?.isEmpty == true ? EmailInputError.empty : value.isValidEmail() ? null : EmailInputError.invalid;
+    return value?.isEmpty == true ? EmailInputError.empty : null;
+    // return value?.isEmpty == true ? EmailInputError.empty : value.isValidEmail() ? null : EmailInputError.invalid;
   }
 }

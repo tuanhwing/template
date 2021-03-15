@@ -30,7 +30,6 @@ class TPResponse {
     if (json == null) return TPResponse.systemError();
     try {
       if (json['code'] == null) throw("json response format incorrect!");
-      String errorCodeMassage = json['error_code'];
       return TPResponse(
         code: json['code'] as int,
         data: json['data'],

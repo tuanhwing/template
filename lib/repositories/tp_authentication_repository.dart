@@ -26,7 +26,7 @@ class TPAuthenticationRepository {
     //   'email' : email,
     //   'password' : password
     // };
-    // return requester.executeRequest(TPRequestMethod.POST, TPEndpoints.LOGIN, data: data);
+    // return requester.executeRequest(TPRequestMethod.POST, TPEndpoints.REFRESHER_TOKEN, data: data);
 
 
     //MOCKUP SUCCESS

@@ -33,6 +33,7 @@
   "contact_us" : "contact us",
   "logout" : "logout",
   "do_you_really_want_to_logout" : "do you really want to logout",
-  "something_went_wrong" : "something went wrong"
+  "something_went_wrong" : "something went wrong",
+  "session_expired" : "session expired"
 
 }

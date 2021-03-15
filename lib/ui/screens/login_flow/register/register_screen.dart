@@ -1,7 +1,6 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:template/blocs/pages/login/tp_register_bloc.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/ui/screens/login_flow/login_content_widget.dart';

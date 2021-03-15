@@ -4,11 +4,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:template/blocs/authentication/tp_authentication_bloc.dart';
-import 'package:template/blocs/authentication/tp_authentication_event.dart';
 import 'package:template/core/tp_state.dart';
+import 'package:template/ui/screens/home_flow/settings/bloc/home_settings_bloc.dart';
+import 'package:template/ui/screens/home_flow/settings/bloc/home_settings_event.dart';
 import 'package:template/ui/screens/home_flow/settings/widgets/home_setting_icon_widget.dart';
 import 'package:template/ui/screens/home_flow/settings/widgets/home_setting_option_widget.dart';
-import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/core/extensions/string_extension.dart';
@@ -21,13 +21,10 @@ class HomeSettingsScreen extends StatefulWidget {
 
 }
 
-class _HomeSettingsState extends TPState<LoginBloc, HomeSettingsScreen> {
+class _HomeSettingsState extends TPState<HomeSettingsBloc, HomeSettingsScreen> {
 
   final List<HomeSettingOptionVModel> _featuresFirst = [];
   final List<HomeSettingOptionVModel> _featuresSecond = [];
-
-  @override
-  LoginBloc get bloc => null;
 
   ///PRIVATE METHODS
   List<Widget> _getFeatureList(List<HomeSettingOptionVModel> features) {
@@ -71,8 +68,7 @@ class _HomeSettingsState extends TPState<LoginBloc, HomeSettingsScreen> {
     _featuresSecond.add(HomeSettingOptionVModel(Icons.help, Colors.redAccent, tr('contact_us').capitalize, onTap: () {
     }));
     _featuresSecond.add(HomeSettingOptionVModel(Icons.logout, TPColors.cloud, tr('logout').capitalize, onTap: (){
-
-      context.read<TPAuthenticationBloc>().add(TPAuthenticationLogoutRequested());
+      bloc.add(HomeSettingLogoutRequested());
     }));
   }
 

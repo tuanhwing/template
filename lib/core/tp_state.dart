@@ -22,6 +22,8 @@ abstract class TPState<PageBloc extends TPPageBloc, StateWidget extends Stateful
   void onPostFrame() {}
   ///[END]OPTIONAL
 
+  PageBloc get bloc => _bloc;
+
   void _onErrorTap() {
     _bloc.pageCubit.dismiss();
   }
@@ -40,18 +42,21 @@ abstract class TPState<PageBloc extends TPPageBloc, StateWidget extends Stateful
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PageCubit>(
-      create: (_) => _bloc.pageCubit,
-      child: TPPageWidget(
-        BlocProvider(
-          create: (_) => _bloc,
-          child: content
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<PageCubit>(
+          create: (_) => _bloc.pageCubit,
         ),
+        BlocProvider<PageBloc>(
+            create: (_) => _bloc,
+        ),
+      ],
+      child: TPPageWidget(
+        content,
         _onErrorTap,
-        // bloc.loadingStream,
         appBar: appBar,
         backgroundColor: backgroundColor,
-      ),
+      )
     );
   }
 

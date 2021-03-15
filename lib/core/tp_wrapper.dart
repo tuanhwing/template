@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:template/core/observers/tp_back_platform_observer.dart';
+import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
 
 abstract class TPWrapper extends StatelessWidget {
 
@@ -10,7 +10,7 @@ abstract class TPWrapper extends StatelessWidget {
   Route generateRoutes(RouteSettings routeSettings);
 
   Future<bool> _onWillPop(BuildContext context) async {
-    Provider.of<TPBackPlatformObserver>(context, listen: false).addEvent(true);
+    context.read<TPBackPlatformCubit>().notify();
     return false;
   }
 

@@ -9,13 +9,14 @@ import 'package:template/blocs/authentication/tp_authentication_event.dart';
 import 'package:template/core/network/tp_response.dart';
 import 'package:template/core/tp_navigator.dart';
 import 'package:template/blocs/pages/tp_page_bloc.dart';
+import 'package:template/core/tp_network_requester.dart';
 import 'package:template/models/tp_user_model.dart';
 import 'package:template/repositories/tp_authentication_repository.dart';
 import 'package:template/repositories/tp_user_repository.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_event.dart';
 import 'package:template/ui/screens/login_flow/login/bloc/login_state.dart';
-import 'package:template/ui/screens/login_flow/login/models/password_input.dart';
-import 'package:template/ui/screens/login_flow/login/models/email_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/password_input.dart';
+import 'package:template/ui/screens/login_flow/login/supports/email_input.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/utils/tp_routenames.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,7 +93,7 @@ class LoginBloc extends TPPageBloc<LoginEvent, LoginState> {
         );
         String _errorMessage = response.message;
         if (response.code == TPResponseCode.SUCCESS) {
-          await _userRepository.requester.setToken(response.data['token'], response.data['refresh_token']);
+          await TPNetworkRequester().setToken(response.data['token'], response.data['refresh_token']);
           TPResponse profileResponse = await _userRepository.getUser(email: state.email.value);
           _errorMessage = profileResponse.message;
           if (profileResponse.code == TPResponseCode.SUCCESS) {
