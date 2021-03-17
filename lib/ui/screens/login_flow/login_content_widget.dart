@@ -8,6 +8,7 @@ import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/utils/tp_routenames.dart';
+import 'package:template/utils/tp_utils.dart';
 
 class LoginContentWidget extends StatelessWidget {
   LoginContentWidget({@required this.child, @required this.titleKey}) : assert(child != null && titleKey != null);
@@ -23,10 +24,12 @@ class LoginContentWidget extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           color: TPColors.cloud,
-          child: ModalRoute.of(context).settings.name != TPRouteNames.LOGIN ? SafeArea(
-            child: Column(
+          child: SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
+                ModalRoute.of(context).settings.name != TPRouteNames.LOGIN ? GestureDetector(
                   onTap: () {
                     TPNavigator.pop(context);
                   },
@@ -38,10 +41,21 @@ class LoginContentWidget extends StatelessWidget {
                       size: 2*TPDimensions.DIMENSION_15,
                     ),
                   ),
+                ) : SizedBox(),
+                Expanded(child: Container()),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(TPColors.blue),
+                  ),
+                  onPressed: () {
+                    context.locale = TPUtils.getNextLocale(context);
+                  },
+                  child: Text(context.locale.languageCode)
                 ),
+                SizedBox(width: TPDimensions.DIMENSION_12,)
               ],
             ),
-          ) : SizedBox(),
+          ),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,

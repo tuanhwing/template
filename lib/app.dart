@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:template/blocs/authentication/tp_authentication_bloc.dart';
 import 'package:template/blocs/authentication/tp_authentication_state.dart';
 import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
+import 'package:template/core/factory/tp_bloc_factory.dart';
 import 'package:template/core/tp_network_requester.dart';
 import 'package:template/repositories/tp_authentication_repository.dart';
 import 'package:template/ui/screens/home_flow/home_wrapper.dart';
@@ -17,15 +18,13 @@ import 'package:template/utils/tp_themes.dart';
 import 'package:template/utils/tp_utils.dart';
 
 class App extends StatelessWidget {
-  App(this._authenticationRepository);
-  final TPAuthenticationRepository _authenticationRepository;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => TPAuthenticationBloc(_authenticationRepository),),
-        BlocProvider(create: (_) => TPBackPlatformCubit())
+        BlocProvider(create: (_) => TPBlocFactory.of<TPAuthenticationBloc>(),),
+        BlocProvider(create: (_) => TPBlocFactory.of<TPBackPlatformCubit>())
       ],
       child: AppView(),
     );

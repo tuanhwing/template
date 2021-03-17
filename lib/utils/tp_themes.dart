@@ -8,7 +8,9 @@ class TPThemes {
     fontFamily: 'Roboto',
     colorScheme: _colorScheme,
     ///Cursor color for androind+iOS
-    cursorColor: TPColors.sliver,
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: TPColors.sliver
+    ),
     cupertinoOverrideTheme: CupertinoThemeData(
       primaryColor: TPColors.sliver,
     ),

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/app.dart';
-import 'package:template/repositories/tp_authentication_repository.dart';
+import 'package:template/utils/tp_defines.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +11,10 @@ void main() async {
   runApp(
       EasyLocalization(
         useOnlyLangCode: true,
-        supportedLocales: [Locale('en', 'US'), Locale('vi', 'VN')],
-        fallbackLocale: Locale('vi', 'VN'),
+        supportedLocales: TPDefines.locales,
+        fallbackLocale: TPDefines.locales.first,
         path: 'assets/langs',
-        child: App(TPAuthenticationRepository())
+        child: App()
       )
   );
 }

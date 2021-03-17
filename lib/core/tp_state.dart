@@ -32,7 +32,7 @@ abstract class TPState<PageBloc extends TPPageBloc, StateWidget extends Stateful
   void initState() {
     super.initState();
 
-    _bloc = TPBlocFactory.of<PageBloc>(context);
+    _bloc = TPBlocFactory.of<PageBloc>(context: context);
 
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
       onPostFrame();

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/core/tp_navigator.dart';
+import 'package:template/utils/tp_defines.dart';
 import 'package:template/utils/tp_dimensions.dart';
 
 class TPUtils {
@@ -26,6 +27,15 @@ class TPUtils {
   static Future<String> loadData(String key) async {
     final prefs = await _prefs;
     return prefs.get(key);
+  }
+
+  static Locale getNextLocale(BuildContext context) {
+    int index;
+    for (index = 0; index < TPDefines.locales.length; index++) {
+      if (TPDefines.locales[index].languageCode == context.locale.languageCode) break;
+    }
+    index = index + 1 >= TPDefines.locales.length ? 0 : (index + 1);
+    return TPDefines.locales[index];
   }
 
 
