@@ -8,6 +8,7 @@ import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/utils/tp_routenames.dart';
+import 'package:template/utils/tp_utils.dart';
 
 class LoginContentWidget extends StatelessWidget {
   LoginContentWidget({@required this.child, @required this.titleKey}) : assert(child != null && titleKey != null);
@@ -23,21 +24,38 @@ class LoginContentWidget extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           color: TPColors.cloud,
-          child: ModalRoute.of(context).settings.name != TPRouteNames.LOGIN ? SafeArea(
-            child: GestureDetector(
-              onTap: () {
-                TPNavigator.pop(context);
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
-                child: Icon(
-                  Icons.arrow_back_ios_outlined,
-                  color: TPColors.black,
-                  size: 2*TPDimensions.DIMENSION_15,
+          child: SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ModalRoute.of(context).settings.name != TPRouteNames.LOGIN ? GestureDetector(
+                  onTap: () {
+                    TPNavigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
+                    child: Icon(
+                      Icons.arrow_back_ios_outlined,
+                      color: TPColors.black,
+                      size: 2*TPDimensions.DIMENSION_15,
+                    ),
+                  ),
+                ) : SizedBox(),
+                Expanded(child: Container()),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(TPColors.blue),
+                  ),
+                  onPressed: () {
+                    context.locale = TPUtils.getNextLocale(context);
+                  },
+                  child: Text(context.locale.languageCode)
                 ),
-              ),
+                SizedBox(width: TPDimensions.DIMENSION_12,)
+              ],
             ),
-          ) : SizedBox(),
+          ),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,

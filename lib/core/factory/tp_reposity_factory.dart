@@ -1,16 +1,14 @@
 
-
-import 'package:flutter/cupertino.dart';
-import 'package:template/repositories/tp_repository.dart';
+import 'package:template/repositories/tp_authentication_repository.dart';
 import 'package:template/repositories/tp_user_repository.dart';
 
 class TPRepositoryFactory {
 
-
-  static T of<T extends TPRepository>(BuildContext context) {
+  static T of<T>() {
     switch(T) {
-      case TPUserRepository: return TPUserRepository(context) as T;
-      default: Exception("TPBlocFactory can't find $T");
+      case TPAuthenticationRepository: return TPAuthenticationRepository() as T;
+      case TPUserRepository: return TPUserRepository() as T;
+      default: throw Exception("TPBlocFactory can't find $T");
     }
   }
 }

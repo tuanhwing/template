@@ -8,4 +8,6 @@ class TPEndpoints {
   static const String VERIFY_OTP = '/v1/authentication/confirm_register';
   static const String REFRESHER_TOKEN = '/v1/authentication/refresh_token';
   //[END] LOGIN
+
+  static const String USER_PROFILE = '/v1/user/profile';
 }

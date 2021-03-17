@@ -1,8 +1,9 @@
 
+import 'package:template/blocs/authentication/tp_authentication_bloc.dart';
+import 'package:template/blocs/authentication/tp_authentication_event.dart';
 import 'package:template/core/network/tp_endpoints.dart';
 import 'package:template/core/network/tp_request.dart';
 import 'package:template/core/network/tp_response.dart';
-import 'package:template/core/observers/tp_force_logout_observer.dart';
 
 import 'package:template/core/config/tp_app_config.dart';
 import 'package:template/core/tp_logger.dart';
@@ -10,15 +11,23 @@ import 'package:template/utils/tp_defines.dart';
 import 'package:template/utils/tp_utils.dart';
 
 class TPNetworkRequester {
-  TPNetworkRequester(this._logoutObserver);
+  static final TPNetworkRequester _singleton = TPNetworkRequester._internal();
+  factory TPNetworkRequester() {
+    return _singleton;
+  }
+  TPNetworkRequester._internal();
+
   TPRequest _request = TPRequest(TPAPIConfig[TPAppConfig.APP_ENVIROMENT]);
+  TPAuthenticationBloc authenticationBloc;
 
   String _token;
   String _refreshToken;
   String get token => _token;
 
-  TPForceLogoutObserver _logoutObserver;
 
+  Map<String, String> get _defaultHeaders => {
+    'Content-Type': 'application/json',
+  };
 
   Future setToken(String token, String refreshToken) async {
     _refreshToken = refreshToken;
@@ -36,9 +45,9 @@ class TPNetworkRequester {
 
   Future<TPResponse> _refreshNewToken() async {
     //RefresherTOKEN
-
     Map<String, String> headerRequest = {"Authorization" : "Bearer " + _refreshToken};
     TPLogger.log("refresh_token by refresh_token: $headerRequest");
+
     TPResponse response = await _request.get(TPEndpoints.REFRESHER_TOKEN, headers: headerRequest);
     TPLogger.log('Response refresh_token code: ${response.code}');
     TPLogger.log('Response refresh_token data: ${response.data.toString()}');
@@ -46,14 +55,17 @@ class TPNetworkRequester {
     if (response.code == TPResponseCode.SUCCESS) {
       await setToken(response.data['token'], response.data['refresh_token']);
     }
-    else if (response.code == TPResponseCode.REFRESH_TOKEN_EXPIRED) {
+    else {
       removeToken();
     }
     return response;
   }
 
   Future<TPResponse> executeRequest(TPRequestMethod method, String endpoint, {Map<String, String> headers, Map<String, dynamic> data, String filePath}) async {
-    Map<String, String> headerRequest = headers == null ? {} : headers;
+    Map<String, String> headerRequest = Map.from(_defaultHeaders);
+    if (headers != null) {
+      headerRequest.addAll(headers);
+    }
     if (_token != null)
       headerRequest.addAll({"Authorization" : "Bearer " + _token});
     TPLogger.log('URL: ${_request.baseURL}');
@@ -99,9 +111,10 @@ class TPNetworkRequester {
         else if (refreshResponse.code == TPResponseCode.REFRESH_TOKEN_EXPIRED) {
           //notify logout observer
           TPLogger.log("refresh token expire");
-          _logoutObserver.addEvent(true);
+          authenticationBloc.add(TPAuthenticationTokenExpired());
           tpResponse = refreshResponse;
         }
+
       }
     }
 

@@ -4,6 +4,8 @@
   "notify" : "notify",
   "error_system" : "can not connect to server",
   "ok" : "ok",
+  "yes" : "yes",
+  "no" : "no",
   "login" : "login",
   "email" : "email",
   "email_placeholder" : "enter email",
@@ -19,5 +21,19 @@
   "confirm_password" : "confirm password",
   "confirm_password_placeholder" : "reenter password",
   "invalid" : "invalid",
-  "feature_not_available" : "feature isn't available"
+  "must_be_not_empty" : "must be not empty",
+  "feature_not_available" : "feature isn't available",
+
+  "vehicle_management": "vehicle management",
+  "document_management" : "document management",
+  "reviews" : "reviews",
+  "languages" : "languages",
+  "notifications" : "notifications",
+  "terms_privacy_policy" : "terms & privacy policy",
+  "contact_us" : "contact us",
+  "logout" : "logout",
+  "do_you_really_want_to_logout" : "do you really want to logout",
+  "something_went_wrong" : "something went wrong",
+  "session_expired" : "session expired"
+
 }
