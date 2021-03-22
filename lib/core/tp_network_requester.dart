@@ -23,6 +23,7 @@ class TPNetworkRequester {
   String _token;
   String _refreshToken;
   String get token => _token;
+  Future<TPResponse> _refreshTokenCompletion;
 
 
   Map<String, String> get _defaultHeaders => {
@@ -62,12 +63,16 @@ class TPNetworkRequester {
   }
 
   Future<TPResponse> executeRequest(TPRequestMethod method, String endpoint, {Map<String, String> headers, Map<String, dynamic> data, String filePath}) async {
+    ///Wait for refresh_token complete before request network
+    await _refreshTokenCompletion;
+
     Map<String, String> headerRequest = Map.from(_defaultHeaders);
     if (headers != null) {
       headerRequest.addAll(headers);
     }
-    if (_token != null)
-      headerRequest.addAll({"Authorization" : "Bearer " + _token});
+    if (_token != null) {
+      headerRequest.addAll({"Authorization": "Bearer " + _token});
+    }
     TPLogger.log('URL: ${_request.baseURL}');
     TPLogger.log('Method: $method');
     TPLogger.log('EndPoint: $endpoint');
@@ -102,7 +107,9 @@ class TPNetworkRequester {
     //Handle response
     if (endpoint != TPEndpoints.LOGOUT) {
       if (tpResponse.code == TPResponseCode.API_TOKEN_EXPIRED) {//Try to refresh Token
-        TPResponse refreshResponse = await _refreshNewToken();
+        _refreshTokenCompletion =  _refreshNewToken();
+
+        TPResponse refreshResponse = await _refreshTokenCompletion;
         if (refreshResponse.code == TPResponseCode.SUCCESS) {
           TPLogger.log("refresh token success");
           headerRequest["Authorization"] = "Bearer " + _token;

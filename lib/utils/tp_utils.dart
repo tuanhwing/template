@@ -12,7 +12,6 @@ import 'package:template/utils/tp_dimensions.dart';
 class TPUtils {
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  ///
   static Future<void> saveData(String key, String value) async {
     final prefs = await _prefs;
     prefs.setString(key, value);

@@ -1,8 +1,8 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:template/blocs/pages/login_flow/register/register_bloc.dart';
 import 'package:template/core/tp_state.dart';
-import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/ui/screens/login_flow/login_content_widget.dart';
 import 'package:template/ui/common/tp_button.dart';
 import 'package:template/ui/common/tp_textfield.dart';
@@ -15,10 +15,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 
-class _RegisterState extends TPState<LoginBloc, RegisterScreen> {
-
-  @override
-  LoginBloc get bloc => null;
+class _RegisterState extends TPState<RegisterBloc, RegisterScreen> {
 
   @override
   // TODO: implement content

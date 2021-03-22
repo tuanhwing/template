@@ -3,11 +3,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
+import 'package:template/blocs/pages/login_flow/login/login_bloc.dart';
 import 'package:template/core/tp_navigator.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/home_flow/main/home_main_screen.dart';
 import 'package:template/ui/screens/home_flow/settings/home_settings_screen.dart';
-import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {

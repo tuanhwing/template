@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:template/blocs/pages/tp_anonymous_bloc.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/home_flow/main/widgets/home_main_percent_widget.dart';
 import 'package:template/ui/screens/home_flow/main/widgets/home_main_summary_widget.dart';
-import 'package:template/ui/screens/login_flow/login/bloc/login_bloc.dart';
 import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 
@@ -14,11 +14,7 @@ class HomeMainScreen extends StatefulWidget {
 
 }
 
-class _HomeMainState extends TPState<LoginBloc, HomeMainScreen> {
-
-  @override
-  // TODO: implement bloc
-  LoginBloc get bloc => null;
+class _HomeMainState extends TPState<TPAnonymousBloc, HomeMainScreen> {
 
   @override
   Widget get content => Stack(
