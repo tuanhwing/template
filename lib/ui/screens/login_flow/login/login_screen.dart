@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
+import 'package:template/core/tp_back_platform_observer.dart';
 import 'package:template/core/tp_navigator.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/blocs/pages/login_flow/login/login_bloc.dart';
@@ -26,16 +26,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 
-class _LoginState extends TPState<LoginBloc, LoginScreen> {
+class _LoginState extends TPState<LoginBloc, LoginScreen> implements TPBackPlatformListener {
+
+  @override
+  void onTapBackPlatform() {
+    TPNavigator.pop(context);
+  }
 
   @override
   void initState() {
     super.initState();
 
-    ///Handle back Android device
-    context.read<TPBackPlatformCubit>().listen((_) {
-      TPNavigator.pop(context);
-    });
+    TPBackPlatformObserver().addListener(this);
+  }
+
+  @override
+  void dispose() {
+    TPBackPlatformObserver().removeListener(this);
+    super.dispose();
   }
 
   @override

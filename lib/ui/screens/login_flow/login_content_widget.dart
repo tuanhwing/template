@@ -7,7 +7,7 @@ import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
 import 'package:template/core/extensions/string_extension.dart';
-import 'package:template/utils/tp_routenames.dart';
+import 'package:template/utils/tp_route_names.dart';
 import 'package:template/utils/tp_utils.dart';
 
 class LoginContentWidget extends StatelessWidget {

@@ -18,7 +18,7 @@ import 'package:template/blocs/pages/login_flow/login/login_state.dart';
 import 'package:template/blocs/pages/login_flow/login/supports/password_input.dart';
 import 'package:template/blocs/pages/login_flow/login/supports/email_input.dart';
 import 'package:template/core/extensions/string_extension.dart';
-import 'package:template/utils/tp_routenames.dart';
+import 'package:template/utils/tp_route_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends TPPageBloc<LoginEvent, LoginState> {

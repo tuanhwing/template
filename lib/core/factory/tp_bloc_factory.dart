@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:template/blocs/authentication/tp_authentication_bloc.dart';
-import 'package:template/blocs/back_platform/tp_back_platform_cubit.dart';
 import 'package:template/blocs/pages/login_flow/register/register_bloc.dart';
 import 'package:template/blocs/pages/tp_anonymous_bloc.dart';
 import 'package:template/core/factory/tp_reposity_factory.dart';
@@ -16,8 +15,7 @@ class TPBlocFactory {
     switch(T) {
       case TPAnonymousBloc:
         return TPAnonymousBloc(context) as T;
-      case TPBackPlatformCubit:
-        return TPBackPlatformCubit() as T;
+
       case TPAuthenticationBloc:
         TPAuthenticationRepository authenticationRepository = TPRepositoryFactory.of<TPAuthenticationRepository>();
         return TPAuthenticationBloc(authenticationRepository) as T;
