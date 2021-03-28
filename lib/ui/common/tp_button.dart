@@ -2,10 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
-import 'package:template/utils/tp_fontsizes.dart';
-import 'package:template/core/extensions/string_extension.dart';
 
 class TPButton extends StatelessWidget {
   TPButton({this.title, this.onTap});
@@ -14,26 +11,33 @@ class TPButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
-        padding: EdgeInsets.symmetric(vertical: 2*TPDimensions.DIMENSION_8),
-        decoration: BoxDecoration(
-          color: onTap == null ? TPColors.black.withOpacity(0.2) : TPColors.black,
-          borderRadius: BorderRadius.all(Radius.circular(2*TPDimensions.DIMENSION_12))
+    return TextButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+            return RoundedRectangleBorder(borderRadius: BorderRadius.circular(2*TPDimensions.DIMENSION_12));
+          }),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+            Color color = Theme.of(context).buttonColor;
+            if (states.contains(MaterialState.disabled)) {
+              return color.withOpacity(0.5);
+            }
+            return color;
+          }),
+          textStyle: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled)) {
+              return Theme.of(context).textTheme.button;
+            }
+            return Theme.of(context).textTheme.button;
+          })
         ),
-        child: Text(
-          title.capitalizeFirstofEach,
-          style: TextStyle(
-            color: TPColors.cloud,
-            fontSize: TPFontSizes.SIZE_18,
-            fontWeight: FontWeight.bold
-          ),
-        ),
-      ),
+        onPressed: onTap,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: TPDimensions.DIMENSION_8),
+          padding: EdgeInsets.symmetric(vertical: TPDimensions.DIMENSION_8),
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: Text(title)
+        )
     );
   }
 

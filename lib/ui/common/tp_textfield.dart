@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:template/utils/tp_colors.dart';
-import 'package:template/utils/tp_fontsizes.dart';
 
 class TPTextField extends StatelessWidget {
   TPTextField({this.title, this.placeholder, this.obscureText = false, this.controller, this.stream});
@@ -18,10 +16,7 @@ class TPTextField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
-            fontSize: TPFontSizes.SIZE_18,
-            fontWeight: FontWeight.bold
-          ),
+          style: Theme.of(context).textTheme.subtitle1,
         ),
         StreamBuilder(
           stream: stream,
@@ -32,7 +27,7 @@ class TPTextField extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: placeholder,
                 hintStyle: TextStyle(
-                  color: TPColors.cloud
+                  // color: TPColors.cloud
                 ),
                 errorText: snapshot.hasError ? snapshot.error : null,
 

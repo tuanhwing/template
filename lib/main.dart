@@ -7,6 +7,7 @@ import 'package:template/utils/tp_defines.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
+  await EasyLocalization.ensureInitialized();
 
   runApp(
       EasyLocalization(

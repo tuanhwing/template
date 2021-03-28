@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:template/core/tp_navigator.dart';
 import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
-import 'package:template/utils/tp_fontsizes.dart';
 import 'package:template/core/extensions/string_extension.dart';
 import 'package:template/utils/tp_route_names.dart';
 import 'package:template/utils/tp_utils.dart';
@@ -23,7 +22,6 @@ class LoginContentWidget extends StatelessWidget {
           alignment: Alignment.topLeft,
           width: double.infinity,
           height: double.infinity,
-          color: TPColors.cloud,
           child: SafeArea(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -44,13 +42,15 @@ class LoginContentWidget extends StatelessWidget {
                 ) : SizedBox(),
                 Expanded(child: Container()),
                 ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(TPColors.blue),
-                  ),
                   onPressed: () {
-                    context.locale = TPUtils.getNextLocale(context);
+                    context.setLocale(TPUtils.getNextLocale(context));
                   },
-                  child: Text(context.locale.languageCode)
+                  child: Text(
+                    context.locale.languageCode,
+                    style: TextStyle(
+                      color: TPColors.black
+                    ),
+                  )
                 ),
                 SizedBox(width: TPDimensions.DIMENSION_12,)
               ],
@@ -70,11 +70,11 @@ class LoginContentWidget extends StatelessWidget {
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 2*TPDimensions.DIMENSION_8),
                 decoration: BoxDecoration(
-                    color: TPColors.white,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(2*TPDimensions.DIMENSION_15),
-                      topLeft: Radius.circular(2*TPDimensions.DIMENSION_15),
-                    )
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(2*TPDimensions.DIMENSION_15),
+                    topLeft: Radius.circular(2*TPDimensions.DIMENSION_15),
+                  )
                 ),
                 child: SafeArea(
                   top: false,
@@ -85,10 +85,7 @@ class LoginContentWidget extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical:2*TPDimensions.DIMENSION_12),
                         child: Text(
                           titleKey != null ? tr(titleKey).allInCaps : "",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: TPFontSizes.SIZE_25
-                          ),
+                          style: Theme.of(context).textTheme.headline5
                         ),
                       ),
                       Expanded(

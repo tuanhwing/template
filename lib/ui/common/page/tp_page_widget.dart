@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:template/ui/common/page/cubit/page_cubit.dart';
-import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
 import 'package:template/core/extensions/string_extension.dart';
@@ -36,14 +35,12 @@ class TPPageWidget extends StatelessWidget {
   }
 
   ///Loading widget
-  Widget _loadingWidget(String message) => Container(
-    color: Colors.black38,
+  Widget _loadingWidget(String message, {BuildContext context}) => Container(
     child: Center(
       child: Wrap(
         children: [
           Container(
               decoration: BoxDecoration(
-                  color: Colors.black12,
                   borderRadius: BorderRadius.all(
                       Radius.circular(TPDimensions.DIMENSION_8))
               ),
@@ -51,7 +48,7 @@ class TPPageWidget extends StatelessWidget {
               child: Column(
                 children: [
                   CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(TPColors.cloud),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                   ),
                   SizedBox(height: StringExtension.isNullOrEmpty(message) ? TPDimensions.DIMENSION_ZERO : TPDimensions.DIMENSION_8,),
                   message != null ? Text(message) : SizedBox()
@@ -65,8 +62,8 @@ class TPPageWidget extends StatelessWidget {
   );
 
   ///Error widget
-  Widget _errorWidget(String error) => Container(
-    color: Colors.black38,
+  Widget _errorWidget(String error, {BuildContext context}) => Container(
+    // color: Colors.black38,
     child: Center(
         child: Wrap(
           children: [
@@ -77,7 +74,7 @@ class TPPageWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: TPDimensions.DIMENSION_8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(TPDimensions.DIMENSION_15),
-                color: TPColors.white,
+                color: Theme.of(context).colorScheme.surface,
 
               ),
               child: Column(
@@ -87,7 +84,7 @@ class TPPageWidget extends StatelessWidget {
                   Text(error ?? ""),
                   SizedBox(height: TPDimensions.DIMENSION_8/2,),
                   Divider(
-                      color: Colors.black54
+                      // color: Colors.black54
                   ),
                   SizedBox(height: TPDimensions.DIMENSION_8/2,),
                   InkWell(
@@ -107,12 +104,18 @@ class TPPageWidget extends StatelessWidget {
     ),
   );
 
-  Widget _handle(TPPageState state) {
+  Widget _handle(TPPageState state, {BuildContext context}) {
     switch(state.action) {
       case PageAction.error:
-        return _errorWidget(state.message);
+        return Container(
+          color: Theme.of(context).colorScheme.secondaryVariant,
+          child: _errorWidget(state.message, context: context)
+        );
       case PageAction.loading:
-        return _loadingWidget(state.message);
+        return Container(
+          color: Theme.of(context).colorScheme.secondaryVariant,
+          child: _loadingWidget(state.message, context: context)
+        );
       default:
         return SizedBox();
     }
@@ -127,7 +130,7 @@ class TPPageWidget extends StatelessWidget {
         children: [
           _body,
           BlocBuilder<PageCubit, TPPageState>(
-            builder: (_, state) => _handle(state),
+            builder: (_, state) => _handle(state, context: context),
           )
         ],
       ),

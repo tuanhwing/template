@@ -34,7 +34,6 @@ class _HomeSettingsState extends TPState<HomeSettingsBloc, HomeSettingsScreen> {
       widgets: [
         HomeSettingsIconWidget(
           e.iconData,
-          backgroundColor: e.backgroundColor,
         ),
         SizedBox(width: TPDimensions.DIMENSION_8,),
         Expanded(
@@ -52,22 +51,22 @@ class _HomeSettingsState extends TPState<HomeSettingsBloc, HomeSettingsScreen> {
   @override
   void initState() {
     super.initState();
-    _featuresFirst.add(HomeSettingOptionVModel(Icons.verified_user_sharp, TPColors.light, tr('vehicle_management').capitalize, onTap: () {
+    _featuresFirst.add(HomeSettingOptionVModel(Icons.verified_user_sharp, tr('vehicle_management').capitalize, onTap: () {
     }));
-    _featuresFirst.add(HomeSettingOptionVModel(Icons.date_range, Colors.green, tr('document_management').capitalize, onTap: () {
+    _featuresFirst.add(HomeSettingOptionVModel(Icons.date_range, tr('document_management').capitalize, onTap: () {
     }));
-    _featuresFirst.add(HomeSettingOptionVModel(Icons.record_voice_over, TPColors.cloud, tr('reviews').capitalize, onTap: () {
+    _featuresFirst.add(HomeSettingOptionVModel(Icons.record_voice_over, tr('reviews').capitalize, onTap: () {
     }));
-    _featuresFirst.add(HomeSettingOptionVModel(Icons.language, Colors.blue, tr('languages').capitalize, onTap: () {
+    _featuresFirst.add(HomeSettingOptionVModel(Icons.language, tr('languages').capitalize, onTap: () {
     }));
 
-    _featuresSecond.add(HomeSettingOptionVModel(Icons.notifications, Colors.lightBlueAccent, tr('notifications').capitalize, onTap: () {
+    _featuresSecond.add(HomeSettingOptionVModel(Icons.notifications, tr('notifications').capitalize, onTap: () {
     }));
-    _featuresSecond.add(HomeSettingOptionVModel(Icons.policy, Colors.black38, tr('terms_privacy_policy').capitalize, onTap: () {
+    _featuresSecond.add(HomeSettingOptionVModel(Icons.policy, tr('terms_privacy_policy').capitalize, onTap: () {
     }));
-    _featuresSecond.add(HomeSettingOptionVModel(Icons.help, Colors.redAccent, tr('contact_us').capitalize, onTap: () {
+    _featuresSecond.add(HomeSettingOptionVModel(Icons.help, tr('contact_us').capitalize, onTap: () {
     }));
-    _featuresSecond.add(HomeSettingOptionVModel(Icons.logout, TPColors.cloud, tr('logout').capitalize, onTap: (){
+    _featuresSecond.add(HomeSettingOptionVModel(Icons.logout, tr('logout').capitalize, onTap: (){
       bloc.add(HomeSettingLogoutRequested());
     }));
   }

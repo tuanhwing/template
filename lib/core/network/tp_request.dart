@@ -25,7 +25,7 @@ class TPRequest {
 
     try {
       final response =
-      await _httpClient.get(_baseURL + endpoint, headers: headers).timeout(timeLimit);
+      await _httpClient.get(Uri(host: _baseURL, path: endpoint), headers: headers).timeout(timeLimit);
 
       return TPResponse.fromJson(
           json.decode(response.body) as Map<String, dynamic>);
@@ -48,7 +48,7 @@ class TPRequest {
 
     try {
       final response = await _httpClient
-          .post(_baseURL + endpoint, headers: headers, body: json.encode(data), encoding: encoding)
+          .post(Uri(host: _baseURL, path: endpoint), headers: headers, body: json.encode(data), encoding: encoding)
           .timeout(timeLimit);
       return TPResponse.fromJson(
           json.decode(response.body) as Map<String, dynamic>);
@@ -71,7 +71,7 @@ class TPRequest {
 
     try {
       final response = await _httpClient
-          .put(_baseURL + endpoint, headers: headers, body: json.encode(data), encoding: encoding)
+          .put(Uri(host: _baseURL, path: endpoint), headers: headers, body: json.encode(data), encoding: encoding)
           .timeout(timeLimit);
 
       return TPResponse.fromJson(
@@ -95,7 +95,7 @@ class TPRequest {
 
     try {
       final response =
-      await _httpClient.delete(_baseURL + endpoint, headers: headers).timeout(timeLimit);
+      await _httpClient.delete(Uri(host: _baseURL, path: endpoint), headers: headers).timeout(timeLimit);
 
       return TPResponse.fromJson(
           json.decode(response.body) as Map<String, dynamic>);
@@ -118,7 +118,7 @@ class TPRequest {
 
     try {
       final response = await _httpClient
-          .patch(_baseURL + endpoint, headers: headers, body: json.encode(data), encoding: encoding)
+          .patch(Uri(host: _baseURL, path: endpoint), headers: headers, body: json.encode(data), encoding: encoding)
           .timeout(timeLimit);
 
       return TPResponse.fromJson(

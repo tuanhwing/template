@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:template/core/tp_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:template/blocs/authentication/tp_authentication_bloc.dart';
 import 'package:template/blocs/authentication/tp_authentication_state.dart';
@@ -48,12 +49,12 @@ class _AppState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
-
+    TPLogger.log("_AppState rebuild ${context.locale.languageCode}");
     return MaterialApp(
       navigatorKey: _navigatorKey,
-      localizationsDelegates: [
-        EasyLocalization.of(context).delegate,
-      ],
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: TPThemes.defaultTheme,
       builder: (context, child) {
         return BlocListener<TPAuthenticationBloc, TPAuthenticationState>(

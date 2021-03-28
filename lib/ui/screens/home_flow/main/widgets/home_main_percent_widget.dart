@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
@@ -48,19 +49,12 @@ class HomeMainPercentWidget extends StatelessWidget {
             ),
             Text(
               "%",
-              style: TextStyle(
-                  color: TPColors.brown
-              ),
             )
           ],
         ),
         footer: Text(
           footerString ?? "",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: TPFontSizes.SIZE_16,
-              color: TPColors.brown
-          ),
+          style: Theme.of(context).textTheme.subtitle2
         ),
         circularStrokeCap: CircularStrokeCap.round,
         progressColor: progressColor,

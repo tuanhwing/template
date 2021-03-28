@@ -89,21 +89,14 @@ class _LoginEmailInputWidget extends StatelessWidget {
           children: [
             Text(
               tr('email').capitalizeFirstofEach,
-              style: TextStyle(
-                  fontSize: TPFontSizes.SIZE_18,
-                  fontWeight: FontWeight.bold
-              ),
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             TextField(
               key: const Key('loginForm_usernameInput_textField'),
               onChanged: (username) => context.read<LoginBloc>().add(LoginEmailChanged(username)),
               decoration: InputDecoration(
                 hintText: tr('email_placeholder').capitalize,
-                hintStyle: TextStyle(
-                    color: TPColors.cloud
-                ),
                 errorText: state.email.invalid ? _getEmailError(state.email.error) : null,
-
               ),
             ),
           ],
@@ -135,10 +128,7 @@ class _LoginPasswordInputWidget extends StatelessWidget {
           children: [
             Text(
               tr('password').capitalizeFirstofEach,
-              style: TextStyle(
-                  fontSize: TPFontSizes.SIZE_18,
-                  fontWeight: FontWeight.bold
-              ),
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             TextField(
               key: const Key('loginForm_passwordInput_textField'),
@@ -146,9 +136,6 @@ class _LoginPasswordInputWidget extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: tr('password_placeholder').capitalize,
-                hintStyle: TextStyle(
-                    color: TPColors.cloud
-                ),
                 errorText: state.password.invalid ? _getPasswordError(state.password.error) : null,
 
               ),
@@ -173,7 +160,7 @@ class _SignUpWidget extends StatelessWidget {
             tr('do_not_have_an_account').capitalize + " ? ",
             style: TextStyle(
                 fontSize: TPFontSizes.SIZE_16,
-                color: TPColors.cloud
+                color: TPColors.sliver
             ),
           ),
           GestureDetector(
@@ -183,7 +170,7 @@ class _SignUpWidget extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: TPFontSizes.SIZE_16,
-                  color: TPColors.cloud
+                  color: TPColors.sliver
               ),
             ),
           ),
@@ -206,7 +193,7 @@ class _ForgetPasswordWidget extends StatelessWidget {
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: TPFontSizes.SIZE_16,
-              color: TPColors.cloud
+              color: TPColors.sliver
           ),
         ),
       ),

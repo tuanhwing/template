@@ -8,6 +8,7 @@ import 'package:template/core/tp_navigator.dart';
 import 'package:template/core/tp_state.dart';
 import 'package:template/ui/screens/home_flow/main/home_main_screen.dart';
 import 'package:template/ui/screens/home_flow/settings/home_settings_screen.dart';
+import 'package:template/utils/tp_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -52,6 +53,7 @@ class _HomeState extends TPState<LoginBloc, HomeScreen> implements TPBackPlatfor
     return Scaffold(
       body: content,
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: TPColors.dart_purple,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

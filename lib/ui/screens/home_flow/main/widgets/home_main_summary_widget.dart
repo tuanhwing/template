@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:template/utils/tp_colors.dart';
 import 'package:template/utils/tp_dimensions.dart';
 import 'package:template/utils/tp_fontsizes.dart';
+import 'package:template/utils/tp_mockup.dart';
+import 'package:template/core/extensions/string_extension.dart';
 
 class HomeMainSummaryWidget extends StatelessWidget {
 
@@ -17,7 +19,7 @@ class HomeMainSummaryWidget extends StatelessWidget {
           title,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: TPColors.cloud
+            color: TPColors.white
           ),
         ),
         SizedBox(height: TPDimensions.DIMENSION_8,),
@@ -25,7 +27,8 @@ class HomeMainSummaryWidget extends StatelessWidget {
           value,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-              fontWeight: FontWeight.bold
+            color: TPColors.white,
+            fontWeight: FontWeight.bold
           ),
         ),
       ],
@@ -41,7 +44,7 @@ class HomeMainSummaryWidget extends StatelessWidget {
       ),
       child: DefaultTextStyle(
         style: TextStyle(
-          color: TPColors.white,
+          color: TPColors.blue_purple,
           fontSize: TPFontSizes.SIZE_16,
         ),
         child: Row(
@@ -50,10 +53,9 @@ class HomeMainSummaryWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Temporary",
+                  TPMockUp.STRING_TITLE.capitalize,
                   style: TextStyle(
-                      color: TPColors.cloud,
-                      fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(height: TPDimensions.DIMENSION_8/2,),
@@ -63,10 +65,10 @@ class HomeMainSummaryWidget extends StatelessWidget {
                     Icon(
                       Icons.monetization_on_outlined,
                       size: 2*TPDimensions.DIMENSION_12,
-                      color: TPColors.white,
+                      color: TPColors.light_purple,
                     ),
                     Text(
-                      "123.7",
+                      TPMockUp.STRING_VALUE.capitalize,
                       style: TextStyle(
                         fontSize: TPFontSizes.SIZE_40,
                         fontWeight: FontWeight.bold
@@ -85,16 +87,16 @@ class HomeMainSummaryWidget extends StatelessWidget {
                     vertical: 2*TPDimensions.DIMENSION_12
                 ),
                 decoration: BoxDecoration(
-                    color: TPColors.light_blue.withOpacity(0.2),
+                    color: TPColors.blue_purple,
                     borderRadius: BorderRadius.all(Radius.circular(TPDimensions.DIMENSION_12))
                 ),
                 child:  Row(
                   children: [
                     Expanded(
-                      child: _buildColumnInfo("Temporary", _defaultString),
+                      child: _buildColumnInfo(TPMockUp.STRING_TITLE.capitalize, _defaultString),
                     ),
                     Expanded(
-                      child: _buildColumnInfo("Temporary", _defaultString),
+                      child: _buildColumnInfo(TPMockUp.STRING_TITLE.capitalize, _defaultString),
                     )
                   ],
                 ),

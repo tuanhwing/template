@@ -7,14 +7,12 @@ import 'package:template/utils/tp_dimensions.dart';
 
 ///Info model
 class HomeSettingOptionVModel {
-  HomeSettingOptionVModel(this._iconData, this._backgroundColor, this._title, {this.onTap});
+  HomeSettingOptionVModel(this._iconData, this._title, {this.onTap});
   final IconData _iconData;
-  final Color _backgroundColor;
   final String _title;
   final Function onTap;
 
   IconData get iconData => _iconData;
-  Color get backgroundColor => _backgroundColor;
   String get title => _title;
 }
 
